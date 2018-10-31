@@ -1,6 +1,6 @@
 # 《Flink实战教程》
 
-##一、Flink部署与开发
+## 一、Flink部署与开发
 
 * [第001章：第四代通用大数据处理引擎简介](book/introduce/introduce.md)
 
@@ -14,7 +14,7 @@
 
 * [第006章：基于IntelliJ IDEA搭建使用maven管理的集成开发环境](book/ide/idea-maven/idea-maven.md)
 
-##二、Flink批处理API详解与编程实战
+## 二、Flink批处理API详解与编程实战
 
 * [第007章：DateSet实用API详解一](book/api/dataset/dataset01.md)
 
@@ -28,7 +28,7 @@
 
 * [第012章：DataSet实用Function详解(Java版)](book/api/datasetFunction/datasetFunctionJava.md)
 
-##三、Flink高级特性与高级应用
+## 三、Flink高级特性与高级应用
 * [第013章：Flink的内存管理](book/memory/memory.md)
 
 * [第014章：Flink的作业调度情况](book/internal/JobsScheduling/JobsScheduling.md)
@@ -43,7 +43,7 @@
 
 * [第019章：Flink中OutFormat设置(Scala版)](book/outputformat/outputformat.md)
 
-##四、Flink流处理API详解与编程实战
+## 四、Flink流处理API详解与编程实战
 * [第000章：Flink基于流的wordcount示例](book/stream/streamwc/streamwc.md)
 
 * [第000章：Flink基于流的window操作](book/stream/window/window.md)
@@ -81,7 +81,7 @@
 
 
 ---
-##六、重点参考链接：  
+## 六、重点参考链接：  
 ```
 https://www.oreilly.com/ideas/the-world-beyond-batch-streaming-101
 https://www.oreilly.com/ideas/the-world-beyond-batch-streaming-102
@@ -93,7 +93,7 @@ http://data-artisans.com/session-windowing-in-flink/
 
 
 ---
-##七、TODO LIST
+## 七、TODO LIST
 批处理：  
 累加器  
 /Users/liguohua/Documents/F/code/idea/git/simple-flink/src/main/scala/code/book/batch/outputformat   
