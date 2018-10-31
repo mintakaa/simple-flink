@@ -1,4 +1,4 @@
-##一、flink在standalone模式主节点下有HA的部署实战 
+## 一、flink在standalone模式主节点下有HA的部署实战 
 
 ```
 当Flink程序运行时，如果jobmanager崩溃，那么整个程序都会失败。为了防止jobmanager的单点故障，
@@ -11,10 +11,10 @@
 >1.由于flink jobmanager的HA配置依赖 zookeeper，因此要先配置并启动zookeeper集群   
 >2.由于flink的HA模式下的state backend在要依赖hdfs，因此要先配置并启动Hadoop集群    
 
-###1.部署规划
+### 1.部署规划
 ![](images/Snip20161118_128.png)  
        
-###2.配置flink-conf.yaml文件  
+### 2.配置flink-conf.yaml文件  
 执行命令：
 ```
 vim ${FLINK_HOME}/conf/flink-conf.yaml
@@ -52,7 +52,7 @@ vim ${FLINK_HOME}/conf/flink-conf.yaml
     recovery.zookeeper.path.root代表zookeeper中节点信息；
     recovery.zookeeper.path.namespace，如果Flink集群有不止一个，那么这个值需要指定，不能用默认的名字。
 ```
-###3.配置masters文件  
+### 3.配置masters文件  
 执行命令：
 ```
 vim ${FLINK_HOME}/conf/masters
@@ -67,12 +67,12 @@ qingcheng13:8085
 spark有个端口已经占用了8081，如果要和spark部署到同一个集群中，应当防止端口冲突
 ```
 
-###4.分发配置文件
+### 4.分发配置文件
 ```
 scp -r ${FLINK_HOME}/conf/*  qingcheng12:${FLINK_HOME}/conf/
 scp -r ${FLINK_HOME}/conf/*  qingcheng13:${FLINK_HOME}/conf/
 ```
-###5.重启flink集群
+### 5.重启flink集群
 
 执行命令：
 ```
@@ -98,21 +98,21 @@ Service temporarily unavailable due to an ongoing leader election. Please refres
 ![](images/Snip20161118_121.png)   
 重启后的flink集群会进行主节点选举，本次使用选举结果是qingcheng13作为active jobmanager
 
-###6.验证重启成功
-####6.1zookeeper客户端验证
+### 6.验证重启成功
+#### 6.1zookeeper客户端验证
 ```
  ls /
  ls /flink
  ls /flink/flink001
 ```
 ![](images/Snip20161118_124.png)   
-####6.2hadoop hdfs上验证
+#### 6.2hadoop hdfs上验证
 ```
 http://192.168.0.12:50070/explorer.html#/flink-metadata
 ```
 ![](images/Snip20161118_123.png)   
 
-###7.测试jobmanager的HA
+### 7.测试jobmanager的HA
 
 ```
 1.关闭jobmanager
@@ -125,14 +125,14 @@ ${FLINK_HOME}/bin/jobmanager.sh start
 active jobmanager，本次实验选举的是qingcheng12.
 ![](images/Snip20161118_122.png)   
 
-###8.使用jobmanager的HA的flink集群
-####8.1打开scala-shell  
+### 8.使用jobmanager的HA的flink集群
+#### 8.1打开scala-shell  
 因为此时集群是HA,remote可以填写任意一个jobmanager，它都会被自动转发到active jobmanager上，  
 本次使用的remote参数时qingcheng11,它就能被qingcheng13这个active jobmanager监控到。
 ```
 ${FLINK_HOME}/bin/start-scala-shell.sh remote qingcheng11 6123
 ```
-####8.2执行一个小程序
+#### 8.2执行一个小程序
 ```
 val a= benv.fromElements(1, 2, 3, 4)
 val b= a.map(_*2)
@@ -142,6 +142,6 @@ val e= b.union(c).union(d)
 val f= e.map(_%2==0)
 f.collect
 ```
-####8.3程序执行效果
+#### 8.3程序执行效果
 ![](images/Snip20161118_126.png)   
 
