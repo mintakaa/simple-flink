@@ -1,5 +1,5 @@
-#DateSet的API详解一
-##print
+# DateSet的API详解一
+## print
 ```
 def print(): Unit
 
@@ -26,7 +26,7 @@ web ui中的执行效果：
 ![](images/Snip20161114_87.png) 
 
 
-##printToErr 
+## printToErr 
 ```
 def printToErr(): Unit
 
@@ -51,7 +51,7 @@ C
 ```
 
 
-##count
+## count
 ```
 def count(): Long
 
@@ -74,7 +74,7 @@ res83: Long = 3
 ```
 
 
-##min
+## min
 ```
 def min(field: Int): AggregateDataSet[T]
 def min(field: String): AggregateDataSet[T]
@@ -113,7 +113,7 @@ Scala-Flink> output1.collect
 res79: Seq[Student] = Buffer(Student(16,lisi,174.5))
 ```
 
-##max
+## max
 ```
 def max(field: String): AggregateDataSet[T]
 def max(field: Int): AggregateDataSet[T]
@@ -152,7 +152,7 @@ res79: Seq[Student] = Buffer(Student(18,lisi,174.5))
 ```
 
 
-##sum
+## sum
 ```
 def sum(field: String): AggregateDataSet[T]
 def sum(field: Int): AggregateDataSet[T]
@@ -200,7 +200,7 @@ res113: Seq[Student] = Buffer(Student(18,lisi,1107.0))
 
 
 
-##getType
+## getType
 ```
 def getType(): TypeInformation[T]
 
@@ -224,7 +224,7 @@ res89: org.apache.flink.api.common.typeinfo.TypeInformation[String] = String
 
 
 
-##map
+## map
 ```
 def map[R](fun: (T) ⇒ R)(implicit arg0: TypeInformation[R], arg1: ClassTag[R]): DataSet[R]
 def map[R](mapper:MapFunction[T,R])(implicit arg0:TypeInformation[R],arg1:ClassTag[R]):DataSet[R]
@@ -273,7 +273,7 @@ web ui中的执行效果：
 ![](images/Snip20161118_106.png)      
 
 
-##flatMap  
+## flatMap  
 ```
 def flatMap[R](fun:(T)⇒
 TraversableOnce[R])(implicit arg0:TypeInformation[R],arg1:ClassTag[R]):DataSet[R]
@@ -287,7 +287,7 @@ def flatMap[R](flatMapper:FlatMapFunction[T,R])
 Creates a new DataSet by applying the given function to every element and flattening the results.
 ```
 
-###flatMap示例一
+### flatMap示例一
 执行程序：
 ```scale
 //1.创建一个 DataSet其元素为String类型
@@ -307,7 +307,7 @@ web ui中的执行效果：
 ![](images/Snip20161114_89.png) 
 
     
-###flatMap示例二  
+### flatMap示例二  
 执行程序：
 ```scale
 //1.创建一个DataSet其元素为String类型
@@ -334,7 +334,7 @@ web ui中的执行效果：
 
 
 
-##mapPartition 
+## mapPartition 
 ```
 def mapPartition[R](fun: (Iterator[T]) ⇒ 
 TraversableOnce[R])(implicit arg0: TypeInformation[R], arg1: ClassTag[R]): DataSet[R]
@@ -369,7 +369,7 @@ web ui中的执行效果：
 
 
 
-##filter
+## filter
 ```
 def filter(fun: (T) ⇒ Boolean): DataSet[T]
 def filter(filter: FilterFunction[T]): DataSet[T]
@@ -378,7 +378,7 @@ Creates a new DataSet that contains only the elements satisfying the given filte
 
 过滤满足添加的元素，不满足条件的元素将被丢弃！
 ```
-###filter示例一
+### filter示例一
 执行程序：
 ```scale
 //1.创建一个 DataSet其元素为String类型
@@ -397,7 +397,7 @@ res50: Seq[String] = Buffer(zhangsan boy, wangwu boy)
 web ui中的执行效果：
 ![](images/Snip20161114_99.png) 
 
-###filter示例二
+### filter示例二
 执行程序：
 ```scale
 //1.创建一个DataSet[Int]
@@ -417,7 +417,7 @@ web ui中的执行效果：
 ![](images/Snip20161118_104.png) 
 
 
-##reduce
+## reduce
 ```
 def reduce(fun: (T, T) ⇒ T): DataSet[T]
 def reduce(reducer: ReduceFunction[T]): DataSet[T]
