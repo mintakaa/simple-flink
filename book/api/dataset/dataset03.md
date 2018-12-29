@@ -1,6 +1,6 @@
 
-#DateSet的API详解三
-##join
+# DateSet的API详解三
+## join
 ```
 def join[O](other: DataSet[O], strategy: JoinHint): UnfinishedJoinOperation[T, O]
 def join[O](other: DataSet[O]): UnfinishedJoinOperation[T, O]
@@ -9,7 +9,7 @@ Creates a new DataSet by joining this DataSet with the other DataSet.
 
 将两个DataSet进行join操作
 ```
-###join示例一：
+### join示例一：
 执行程序：
 ```scale
 //1.创建一个 DataSet其元素为[(Int,String)]类型
@@ -37,7 +37,7 @@ web ui中的执行效果：
 ![](images/Snip20161118_100.png) 
 
 
-###join示例二：
+### join示例二：
 ```
 A Join transformation can also call a user-defined join function to process joining tuples. 
 A join function receives one element of the first input DataSet and one element of the second 
@@ -79,7 +79,7 @@ web ui中的执行效果：
 ![](images/Snip20161119_1.png) 
 
 
-###join示例三：？？？
+### join示例三：？？？
 ```
 A Join transformation can also call a user-defined join function to process joining tuples. 
 A join function receives one element of the first input DataSet and one element of the second 
@@ -112,7 +112,7 @@ weightedRatings.collect
 
 
 
-###join示例四：执行join操作时暗示数据大小
+### join示例四：执行join操作时暗示数据大小
 ```
 在执行join操作时暗示数据大小，可以帮助flink优化它的执行策略，提高执行效率。
 ```
@@ -151,7 +151,7 @@ web ui中的执行效果：
 ![](images/Snip20161119_2.png) 
 
 
-###join示例五：执行join操作时暗示数据大小
+### join示例五：执行join操作时暗示数据大小
 ```
 flink有很多种执行join的策略，你可以指定一个执行策略，以便提高执行效率。
 ```
@@ -205,7 +205,7 @@ res15: Seq[((Int, String), (Int, String))] = Buffer(
 
 
 
-##leftOuterJoin
+## leftOuterJoin
 
 ```
 def leftOuterJoin[O](other: DataSet[O], strategy: JoinHint): UnfinishedOuterJoinOperation[T, O]
@@ -215,7 +215,7 @@ An outer join on the left side.
 
 左外连接。
 ```
-###leftOuterJoin示例一
+### leftOuterJoin示例一
 执行程序：
 ```scale
 //1.定义case class
@@ -246,7 +246,7 @@ res26: Seq[(String, Int)] = Buffer((moon,3), (dog,5), (cat,1), (sun,4), (water,-
 web ui中的执行效果：
 ![](images/Snip20161119_3.png) 
 
-###leftOuterJoin示例二
+### leftOuterJoin示例二
 执行程序：
 ```scale
 //1.定义case class
@@ -284,7 +284,7 @@ res26: Seq[(String, Int)] = Buffer((cat,1), (dog,5), (moon,3), (sun,4), (water,-
     JoinHint.REPARTITION_SORT_MERGE
 ```
 
-##rightOuterJoin
+## rightOuterJoin
 
 ```
 def rightOuterJoin[O](other: DataSet[O], strategy: JoinHint): UnfinishedOuterJoinOperation[T, O]
@@ -294,7 +294,7 @@ An outer join on the right side.
 
 右外连接
 ```
-###rightOuterJoin示例一
+### rightOuterJoin示例一
 执行程序：
 ```scale
 //1.定义DataSet[(String, String)] 
@@ -322,7 +322,7 @@ res33: Seq[(String, Int)] = Buffer((moon,3), (sun,4), (cat,1), (dog,5))
 ```
 web ui中的执行效果：
 ![](images/Snip20161119_4.png) 
-###rightOuterJoin示例二
+### rightOuterJoin示例二
 
 执行程序：
 ```scale
@@ -358,7 +358,7 @@ res34: Seq[(String, Int)] = Buffer((moon,3), (sun,4), (cat,1), (dog,5))
     JoinHint.REPARTITION_SORT_MERGE
 ```
 
-##fullOuterJoin
+## fullOuterJoin
 
 ```
 def fullOuterJoin[O](other: DataSet[O], strategy: JoinHint): UnfinishedOuterJoinOperation[T, O]
@@ -368,7 +368,7 @@ Special fullOuterJoin operation for explicitly telling the system what join stra
 
 全外连接
 ```
-###fullOuterJoin示例一
+### fullOuterJoin示例一
 执行程序：
 ```scale
 //1.定义DataSet[(String, String)] 
@@ -397,7 +397,7 @@ res33: Seq[(String, Int)] = Buffer((moon,3), (sun,4), (cat,1), (dog,5))
 web ui中的执行效果：
 ![](images/Snip20161119_5.png) 
 
-###rightOuterJoin示例二
+### rightOuterJoin示例二
 执行程序：
 ```scale
 //1.定义DataSet[(String, String)] 
@@ -434,7 +434,7 @@ res41: Seq[(String, Int)] = Buffer((cat,1), (dog,5), (moon,3), (sun,4))
 
 
 
-##cross
+## cross
 ```
 def cross[O](other: DataSet[O]): CrossDataSet[T, O]
 
@@ -442,7 +442,7 @@ Creates a new DataSet by forming the cartesian product of this DataSet and the o
 
 交叉。拿第一个输入的每一个元素和第二个输入的每一个元素进行交叉操作。
 ```
-###cross实例一：基本tuple
+### cross实例一：基本tuple
 执行程序：
 ```scale
 //1.定义两个DataSet
@@ -465,7 +465,7 @@ res71: Seq[((Int, Int, Int), (Int, Int, Int))] = Buffer(
 web ui中的执行效果：
 ![](images/Snip20161119_6.png)
 
-###cross实例二：case class
+### cross实例二：case class
 执行程序：
 ```scale
 //1.定义 case class
@@ -490,7 +490,7 @@ res69: Seq[(Coord, Coord)] = Buffer(
 ```
 
 
-###cross实例三：自定义操作
+### cross实例三：自定义操作
 执行程序：
 ```scale
 //1.定义 case class
@@ -519,7 +519,7 @@ res65: Seq[(Int, Int, Int)] = Buffer(
 ```
 
 
-##crossWithTiny
+## crossWithTiny
 ```
 def crossWithTiny[O](other: DataSet[O]): CrossDataSet[T, O]
 
@@ -556,7 +556,7 @@ web ui中的执行效果：
 
 
 
-##crossWithHuge
+## crossWithHuge
 ```
 def crossWithHuge[O](other: DataSet[O]): CrossDataSet[T, O]
 
@@ -592,7 +592,7 @@ web ui中的执行效果：
 ![](images/Snip20161119_10.png) 
 
 
-##Union
+## Union
 ```
 def union(other: DataSet[T]): DataSet[T]
 
@@ -635,7 +635,7 @@ web ui中的执行效果：
 
 
 
-##first
+## first
 
 ```
 def first(n: Int): DataSet[T]
@@ -686,7 +686,7 @@ Student(xiaoqi,guangdong,2400.0), Student(zhangsan,hainan,2600.0), Student(zhaol
 ```
 
 
-##getParallelism
+## getParallelism
 ```
 def getParallelism: Int
 
@@ -709,7 +709,7 @@ res98: Int = 1
 
 
 
-##setParallelism
+## setParallelism
 ```
 def setParallelism(parallelism: Int): DataSet[T]
 
@@ -735,7 +735,7 @@ res102: Int = 2
 
 
 
-##writeAsText
+## writeAsText
 ```
 def writeAsText(filePath: String, writeMode: WriteMode = null): DataSink[T]
 
@@ -774,7 +774,7 @@ terminal中查看文件效果：
 
 
 
-##writeAsCsv
+## writeAsCsv
 ```
 def writeAsCsv(filePath: String, rowDelimiter: String = ..., 
 fieldDelimiter: String = ..., writeMode: WriteMode = null): DataSink[T]
@@ -813,7 +813,7 @@ terminal中查看文件效果：
 ![](images/Snip20161123_16.png) 
 
 
-##getExecutionEnvironment
+## getExecutionEnvironment
 ```
 def getExecutionEnvironment: ExecutionEnvironment
 
@@ -856,7 +856,7 @@ res97: Boolean = false
 
 
 
-##Aggregate???
+## Aggregate???
 ```
 def aggregate(agg: Aggregations, field: String): AggregateDataSet[T]
 def aggregate(agg: Aggregations, field: Int): AggregateDataSet[T]
@@ -866,7 +866,7 @@ Creates a new DataSet by aggregating the specified tuple field using the given a
 
 
 
-##CoGroup？？？
+## CoGroup？？？
 ```
 def
 coGroup[O](other: DataSet[O])(implicit arg0: ClassTag[O]): UnfinishedCoGroupOperation[T, O]
@@ -876,7 +876,7 @@ containing a list of elements for that key from both DataSets.
 ```
 
 
-##combineGroup???
+## combineGroup???
 
 ```
 def combineGroup[R](fun: (Iterator[T], Collector[R]) ⇒ 
