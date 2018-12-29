@@ -1,5 +1,5 @@
-#DateSet的API详解二
-##groupBy
+# DateSet的API详解二
+## groupBy
 ```
 def groupBy(firstField: String, otherFields: String*): GroupedDataSet[T]
 def groupBy(fields: Int*): GroupedDataSet[T]
@@ -11,7 +11,7 @@ Creates a GroupedDataSet which provides operations on groups of elements.
 拿第一个输入的每一个元素和第二个输入的每一个元素进行交叉操作。
 ```
 
-###groupBy示例一：使用一个Case Class Fields
+### groupBy示例一：使用一个Case Class Fields
 执行程序：
 ```scale
 //1.定义 class
@@ -49,7 +49,7 @@ res6: Seq[WC] = Buffer(WC(LISI,1000), WC(WANGWU,300), WC(ZHAOLIU,700))
 web ui中的执行效果：
 ![](images/Snip20161119_11.png) 
 
-###groupBy示例二：使用多个Case Class Fields
+### groupBy示例二：使用多个Case Class Fields
 执行程序：
 ```scale
 //1.定义 case class
@@ -105,7 +105,7 @@ web ui中的执行效果：
 ![](images/Snip20161119_12.png) 
 
 
-##ReduceGroup
+## ReduceGroup
 ```
 def reduceGroup[R](fun:(Iterator[T])⇒R)(implicit arg0:TypeInformation[R],arg1:ClassTag[R]):DataSet[R]
 
@@ -119,7 +119,7 @@ Creates a new DataSet by passing all elements in this DataSet to the group reduc
 
 此函数和reduce函数类似，不过它每次处理一个grop而非一个元素。
 ```
-###ReduceGroup示例一，操作tuple
+### ReduceGroup示例一，操作tuple
 执行程序：
 ```scale
 //1.定义 DataSet[(Int, String)]
@@ -144,7 +144,7 @@ res14: Seq[(Int, String)] = Buffer((22,lisi), (20,zhangsan), (22,zhangsan))
 web ui中的执行效果：
 ![](images/Snip20161123_9.png) 
 
-###ReduceGroup示例二，操作case class
+### ReduceGroup示例二，操作case class
 ```scala
 //1.定义case class
 case class Student(age: Int, name: String)
@@ -171,7 +171,7 @@ res16: Seq[Student] = Buffer(Student(20,zhangsan), Student(22,zhangsan), Student
 ```
 
 
-##sortGroup
+## sortGroup
 ```
 Adds a secondary sort key to this GroupedDataSet. This will only have an effect if you use one
 of the group-at-a-time, i.e. reduceGroup.
@@ -208,7 +208,7 @@ web ui中的执行效果：
 ![](images/Snip20161123_10.png) 
 
 
-##minBy
+## minBy
 ```
 def minBy(fields: Int*): DataSet[T]
 
@@ -252,7 +252,7 @@ web ui中的执行效果：
 
 
 
-##maxBy
+## maxBy
 ```
 def maxBy(fields: Int*): DataSet[T]
 def max(field: Int): AggregateDataSet[T]
@@ -295,7 +295,7 @@ web ui中的执行效果：
 ![](images/Snip20161123_12.png) 
 
 
-##distinct
+## distinct
 ```
 
 def distinct(firstField: String, otherFields: String*): DataSet[T]
@@ -307,7 +307,7 @@ Creates a new DataSet containing the distinct elements of this DataSet.
 
 对DataSet中的元素进行去重。
 ```
-###distinct示例一，单一项目的去重
+### distinct示例一，单一项目的去重
 执行程序：
 ```scale
 //1.创建一个 DataSet其元素为String类型
@@ -326,7 +326,7 @@ res52: Seq[String] = Buffer(lisi, wangwu, zhangsan)
 web ui中的执行效果：
 ![](images/Snip20161118_97.png) 
 
-###distinct示例二，多项目的去重，不指定比较项目，默认是全部比较
+### distinct示例二，多项目的去重，不指定比较项目，默认是全部比较
 
 执行程序：
 ```scale
@@ -351,7 +351,7 @@ res53: Seq[(Int, String, Double)] = Buffer(
 (5,zhaoliu,987.3))
 ```
 
-###distinct示例三，多项目的去重，指定比较项目
+### distinct示例三，多项目的去重，指定比较项目
 
 执行程序：
 ```scale
@@ -375,7 +375,7 @@ res54: Seq[(Int, String, Double)] = Buffer(
 (5,zhaoliu,987.3))
 ```
 
-###distinct示例四，case class的去重，指定比较项目
+### distinct示例四，case class的去重，指定比较项目
 
 执行程序：
 ```scale
@@ -431,7 +431,7 @@ web ui中的执行效果：
 ![](images/Snip20161118_108.png) 
 
 
-###distinct示例五，根据表达式进行去重
+### distinct示例五，根据表达式进行去重
 
 执行程序：
 ```scale
